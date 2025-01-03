@@ -1,0 +1,33 @@
+# templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-python
+  labels:
+    app: {{ .Release.Name }}-python
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-python
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-python
+    spec:
+      containers:
+      - name: python-app
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 5000
+        env:
+        {{- if .Values.configmap }}
+        - name: APP_MESSAGE
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.configmap.name }}
+              key: APP_MESSAGE
+        {{- end }}
+        command: ["python3"]
+        args: ["-m", "http.server", "5000"]

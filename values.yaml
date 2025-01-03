@@ -1,0 +1,28 @@
+# values.yaml
+replicaCount: 1
+image:
+  repository: python
+  tag: "3.11"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5000
+
+route:
+  enabled: false
+  host: python-app.example.com
+
+resources: {}
+persistence:
+  enabled: false
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: ""
+
+configmap:
+  name: python-configmap-v1
+  data:
+    APP_MESSAGE: 'This Python app was deployed with Helm!'
+
+secrets: {}
