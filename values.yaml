@@ -1,13 +1,18 @@
 # values.yaml
+appName: python-app
+
+namespace: 618857-deploymentapp
+
 replicaCount: 1
+
 image:
-  repository: python
-  tag: "3.11"
+  repository: jnanasrikrishna/python
+  tag: v1
   pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
-  port: 5000
+  port: 80
 
 route:
   enabled: false
@@ -23,6 +28,6 @@ persistence:
 configmap:
   name: python-configmap-v1
   data:
-    APP_MESSAGE: 'This Python app was deployed with Helm!'
+    CUSTOM_HEADER: 'This app was deployed with helm!'
 
 secrets: {}

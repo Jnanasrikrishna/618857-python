@@ -4,11 +4,12 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: {{ .Release.Name }}-route
+  namespace: {{ .Values.namespace }}
 spec:
   host: {{ .Values.route.host }}
   to:
     kind: Service
-    name: {{ .Release.Name }}-service
+    name: {{ .Values.appName }}-service
   port:
-    targetPort: 5000
+    targetPort: 80
 {{- end }}
