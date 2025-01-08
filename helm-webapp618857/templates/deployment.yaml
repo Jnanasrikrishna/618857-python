@@ -1,23 +1,22 @@
-# templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.appName }}
   namespace: {{ .Values.namespace }}
   labels:
-    app: {{ .Values.appName }}-python
+    app: {{ .Values.appName }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.appName }}-python
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: {{ .Values.appName }}-python
+        app: {{ .Values.appName }}
     spec:
       containers:
-      - name: python
+      - name: python-container
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
@@ -30,4 +29,3 @@ spec:
               name: {{ .Values.configmap.name }}
               key: CUSTOM_HEADER
         {{- end }}
-`

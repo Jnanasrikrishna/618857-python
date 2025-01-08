@@ -1,6 +1,4 @@
-# values.yaml
 appName: python:v1
-
 namespace: 618857-deploymentapp
 
 replicaCount: 1
@@ -14,20 +12,7 @@ service:
   type: ClusterIP
   port: 80
 
-route:
-  enabled: false
-  host: python-app.example.com
-
-resources: {}
-persistence:
-  enabled: false
-  size: 1Gi
-  accessMode: ReadWriteOnce
-  storageClass: ""
-
 configmap:
   name: python-configmap-v1
   data:
-    CUSTOM_HEADER: 'This app was deployed with helm!'
-
-secrets: {}
+    CUSTOM_HEADER: 'Welcome to the Python App!'
