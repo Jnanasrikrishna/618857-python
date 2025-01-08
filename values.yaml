@@ -1,5 +1,5 @@
 # values.yaml
-appName: python-app
+appName: python:v1
 
 namespace: 618857-deploymentapp
 
