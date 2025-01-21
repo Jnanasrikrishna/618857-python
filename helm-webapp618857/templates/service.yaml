@@ -10,4 +10,4 @@ spec:
   - port: {{ .Values.service.port }}
     targetPort: 80
   selector:
-    app: {{ .Values.appName }}
+    app: {{ .Values.appName }}-Service
